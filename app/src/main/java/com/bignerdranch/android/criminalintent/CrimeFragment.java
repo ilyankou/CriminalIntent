@@ -164,9 +164,10 @@ public class CrimeFragment extends Fragment {
         int hour = cal.get(Calendar.HOUR);
         int min = cal.get(Calendar.MINUTE);
         String hourString = (hour < 10) ? ("0" + hour) : ("" + hour);
+        String minString = (min < 10) ? ("0" + min) : ("" + min);
         String pm = cal.get(Calendar.AM_PM) == 1 ? " PM" : " AM";
-        
-        mTimeButton.setText(hourString + ":" + min + pm);
+
+        mTimeButton.setText(hourString + ":" + minString + pm);
     }
 
 

@@ -46,7 +46,6 @@ public class TimePickerFragment extends DialogFragment {
                     .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-
                             Date date = (Date) getArguments().getSerializable(ARG_DATE);
                             Calendar calendar = Calendar.getInstance();
                             calendar.setTime(date);
