@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
+import android.support.v7.app.AppCompatActivity;
 
 import com.bignerdranch.android.criminalintent.CrimeFragment;
 import com.bignerdranch.android.criminalintent.R;
@@ -11,7 +12,7 @@ import com.bignerdranch.android.criminalintent.R;
 /**
  * Created by ilyankou on 10/8/15.
  */
-public abstract class SingleFragmentActivity extends FragmentActivity {
+public abstract class SingleFragmentActivity extends AppCompatActivity {
 
     protected abstract Fragment createFragment();
 

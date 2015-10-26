@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -33,8 +34,7 @@ public class CrimeFragment extends Fragment {
 
     private Crime mCrime;
     private EditText mTitleField;
-    private Button mDateButton;
-    private Button mTimeButton;
+    private Button mDateButton, mTimeButton, mDeleteButton;
     private CheckBox mSolvedCheckBox;
     private String mNiceDate;
     private DateFormat df;
@@ -86,6 +86,7 @@ public class CrimeFragment extends Fragment {
 
         mDateButton = (Button) v.findViewById(R.id.crime_date);
         mTimeButton = (Button) v.findViewById(R.id.crime_time);
+        mDeleteButton = (Button) v.findViewById(R.id.crime_delete);
 
         mDateButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -103,6 +104,14 @@ public class CrimeFragment extends Fragment {
                 TimePickerFragment dialog = TimePickerFragment.newInstance(mCrime.getDate());
                 dialog.setTargetFragment(CrimeFragment.this, REQUEST_TIME);
                 dialog.show(manager, DIALOG_TIME);
+            }
+        });
+
+        mDeleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CrimeLab.get(getActivity()).deleteCrime(crimeId);
+                getActivity().finish();
             }
         });
 
@@ -176,4 +185,5 @@ public class CrimeFragment extends Fragment {
         super.onStop();
         returnResult();
     }
+
 }

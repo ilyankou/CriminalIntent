@@ -48,6 +48,14 @@
             android:textAllCaps="false"
             android:id="@+id/crime_time"/>
 
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textAllCaps="false"
+            android:id="@+id/crime_delete"
+            android:text="@string/delete_button"/>
+
         <CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
