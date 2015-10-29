@@ -65,9 +65,8 @@ public class CrimePagerActivity extends AppCompatActivity {
 
     @Override
     public boolean onNavigateUp() {
-        finishActivity(1);
+        finish();
         return true;
     }
-
 
 }

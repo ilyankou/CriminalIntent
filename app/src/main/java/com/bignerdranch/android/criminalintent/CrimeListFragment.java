@@ -28,17 +28,24 @@ public class CrimeListFragment extends Fragment {
     private CrimeAdapter mAdapter;
     private UUID mClickedUUID;
     private boolean mSubtitleVisible;
+    private List<Crime> mCrimes;
 
     private static final int REQUEST_CRIME = 1;
     private static final String SAVED_SUBTITLE_VISIBLE = "subtitle";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
         View view = inflater.inflate(R.layout.fragment_crime_list, container, false);
 
         if (savedInstanceState != null) {
             mSubtitleVisible = savedInstanceState.getBoolean(SAVED_SUBTITLE_VISIBLE);
         }
+
+        /*
+        if (CrimeLab.get(getActivity()).getCrimes().size() == 0) {
+            return view.findViewById(R.id.no_crimes);
+        }*/
 
         mCrimeRecyclerView = (RecyclerView) view.findViewById(R.id.crime_recycler_view);
         mCrimeRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -58,16 +65,13 @@ public class CrimeListFragment extends Fragment {
         }
 
         else {
-            for (int i = 0; i < crimes.size(); i++) {
-                if (crimes.get(i).getId() == mClickedUUID) {
-                    mAdapter.notifyItemChanged(i);
-                    break;
-                }
-            }
+            mAdapter.setCrimes(crimes);
+            mAdapter.notifyDataSetChanged();
         }
 
         updateSubtitle();
     }
+
 
     private class CrimeHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private Crime mCrime;
@@ -112,6 +116,10 @@ public class CrimeListFragment extends Fragment {
         private List<Crime> mCrimes;
 
         public CrimeAdapter(List<Crime> crimes) {
+            mCrimes = crimes;
+        }
+
+        public void setCrimes(List<Crime> crimes) {
             mCrimes = crimes;
         }
 
